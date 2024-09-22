@@ -1,10 +1,73 @@
-namespace HelloWorld
+using System;
+class MatrixSum
 {
-    class Hello
+    int r, c;
+    int[,] x, y, z;
+    public MatrixSum(int r1, int c1)
     {
-        static void maiin(String[] args)
+        r = r1;
+        c = c1;
+        x = new int[r1, c1];
+        y = new int[r1, c1];
+        z = new int[r1, c1];
+    }
+    public void Input()
+    {
+        Console.WriteLine("Enter elements of the 1st Matrix:");
+        for (int i = 0; i < r; i++)
         {
-            System.Console.WriteLine("Hello world");
+            for (int j = 0; j < c; j++)
+            {
+                x[i, j] = Convert.ToInt32(Console.ReadLine());
+            }
+        }
+        Console.WriteLine("Enter elements of the 2nd Matrix:");
+        for (int i = 0; i < r; i++)
+        {
+            for (int j = 0; j < c; j++)
+            {
+                y[i, j] = Convert.ToInt32(Console.ReadLine());
+            }
         }
     }
-} 
+    public void Calculate()
+    {
+        for (int i = 0; i < r; i++)
+        {
+            for (int j = 0; j < c; j++)
+            {
+                z[i, j] = x[i, j] + y[i, j];
+            }
+        }
+    }
+    public void Display()
+    {
+        Console.WriteLine("Output Matrix:");
+        for (int i = 0; i < r; i++)
+        {
+            for (int j = 0; j < c; j++)
+            {
+                Console.Write(z[i, j] + "\t");
+            }
+            Console.WriteLine();
+        }
+    }
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Enter rows and columns of the matrix:");
+        int r = Convert.ToInt32(Console.ReadLine());
+        int c = Convert.ToInt32(Console.ReadLine());
+        if (r > 0 && c > 0)
+        {
+            MatrixSum obj = new MatrixSum(r, c);
+            obj.Input();
+            obj.Calculate();
+            obj.Display();
+        }
+        else
+        {
+            Console.WriteLine("Error: Rows and columns must be positive.");
+            Environment.Exit(0);
+        }
+    }
+}
