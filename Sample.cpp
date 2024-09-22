@@ -1,51 +1,76 @@
 #include <iostream>
 using namespace std;
-
-void inputMatrix(int rows, int cols, int matrix[][100]);
-void addMatrices(int rows, int cols, int matrix1[][100], int matrix2[][100], int sum[][100]);
-void displayMatrix(int rows, int cols, int matrix[][100]);
-
+class MatrixSum {
+    int r, c;
+    int** x;
+    int** y;
+    int** z;
+public:
+    MatrixSum(int r1, int c1) {
+        r = r1;
+        c = c1;
+        x = new int*[r];
+        y = new int*[r];
+        z = new int*[r];
+        for (int i = 0; i < r; i++) {
+            x[i] = new int[c];
+            y[i] = new int[c];
+            z[i] = new int[c];
+        }
+    }
+    void input() {
+        cout << "Enter elements of the 1st Matrix:" << endl;
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                cin >> x[i][j];
+            }
+        }
+        cout << "Enter elements of the 2nd Matrix:" << endl;
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                cin >> y[i][j];
+            }
+        }
+    }
+    void calculate() {
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                z[i][j] = x[i][j] + y[i][j];
+            }
+        }
+    }
+    void display() {
+        cout << "Output Matrix:" << endl;
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                cout << z[i][j] << "\t";
+            }
+            cout << endl;
+        }
+    }
+    ~MatrixSum() {
+        for (int i = 0; i < r; i++) {
+            delete[] x[i];
+            delete[] y[i];
+            delete[] z[i];
+        }
+        delete[] x;
+        delete[] y;
+        delete[] z;
+    }
+};
 int main() {
-    int rows, cols;
-    cout << "Enter the number of rows: ";
-    cin >> rows;
-    cout << "Enter the number of columns: ";
-    cin >> cols;
+    int r, c;
+    cout << "Enter the number of rows and columns of the matrices:" << endl;
+    cin >> r >> c;
 
-    int matrix1[100][100], matrix2[100][100], sum[100][100];
-    
-    cout << "Enter elements of first matrix:\n";
-    inputMatrix(rows, cols, matrix1);
-    cout << "Enter elements of second matrix:\n";
-    inputMatrix(rows, cols, matrix2);
-    
-    addMatrices(rows, cols, matrix1, matrix2, sum);
-
-    cout << "Sum of the two matrices:\n";
-    displayMatrix(rows, cols, sum);
+    if (r > 0 && c > 0) {
+        MatrixSum obj(r, c);
+        obj.input();
+        obj.calculate();
+        obj.display();
+    } else {
+        cout << "Error: Rows and columns should be greater than 0" << endl;
+    }
     return 0;
-}
-
-void inputMatrix(int rows, int cols, int matrix[][100]) {
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            cout << "Enter element at [" << i << "][" << j << "]: ";
-            cin >> matrix[i][j];
-        }
-    }
-}
-void addMatrices(int rows, int cols, int matrix1[][100], int matrix2[][100], int sum[][100]) {
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            sum[i][j] = matrix1[i][j] + matrix2[i][j];
-        }
-    }
-}
-void displayMatrix(int rows, int cols, int matrix[][100]) {
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            cout << matrix[i][j] << " ";
-        }
-        cout << endl;
-    }
 }
