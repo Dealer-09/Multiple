@@ -1,4 +1,3 @@
-package Experiments;
 import java.util.*;
 class Matrix_sum
 {
@@ -56,7 +55,6 @@ class Matrix_sum
       {
         System.out.println("Error");
         System.exit(0);
-    
       }
    }
 }
