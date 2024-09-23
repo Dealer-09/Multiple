@@ -18,15 +18,16 @@ class MatrixSum
         {
             for (int j = 0; j < c; j++)
             {
-                x[i, j] = Convert.ToInt32(Console.ReadLine());
+                x[i, j] = int.Parse(Console.ReadLine());
             }
         }
+
         Console.WriteLine("Enter elements of the 2nd Matrix:");
         for (int i = 0; i < r; i++)
         {
             for (int j = 0; j < c; j++)
             {
-                y[i, j] = Convert.ToInt32(Console.ReadLine());
+                y[i, j] = int.Parse(Console.ReadLine());
             }
         }
     }
@@ -54,9 +55,10 @@ class MatrixSum
     }
     static void Main(string[] args)
     {
-        Console.WriteLine("Enter rows and columns of the matrix:");
-        int r = Convert.ToInt32(Console.ReadLine());
-        int c = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Enter the number of rows and columns of the matrices:");
+        int r = int.Parse(Console.ReadLine());
+        int c = int.Parse(Console.ReadLine());
+
         if (r > 0 && c > 0)
         {
             MatrixSum obj = new MatrixSum(r, c);
@@ -66,8 +68,7 @@ class MatrixSum
         }
         else
         {
-            Console.WriteLine("Error: Rows and columns must be positive.");
-            Environment.Exit(0);
+            Console.WriteLine("Error: Rows and columns should be greater than 0");
         }
     }
 }
