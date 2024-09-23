@@ -1,11 +1,11 @@
 import java.util.Scanner
-
 class MatrixSum(private val r: Int, private val c: Int) {
     private val x = Array(r) { IntArray(c) }
     private val y = Array(r) { IntArray(c) }
     private val z = Array(r) { IntArray(c) }
+
+    private val sc = Scanner(System.in)
     fun input() {
-        val sc = Scanner(System.in)
         println("Enter elements of the 1st Matrix:")
         for (i in 0 until r) {
             for (j in 0 until c) {
@@ -38,12 +38,16 @@ class MatrixSum(private val r: Int, private val c: Int) {
 }
 fun main() {
     val sc = Scanner(System.in)
-    println("Enter rows and columns of the matrix:")
+
+    println("Enter the number of rows and columns of the matrices:")
     val r = sc.nextInt()
     val c = sc.nextInt()
-
-    val obj = MatrixSum(r, c)
-    obj.input()
-    obj.calculate()
-    obj.display()
+    if (r > 0 && c > 0) {
+        val obj = MatrixSum(r, c)
+        obj.input()
+        obj.calculate()
+        obj.display()
+    } else {
+        println("Error: Rows and columns should be greater than 0")
+    }
 }
